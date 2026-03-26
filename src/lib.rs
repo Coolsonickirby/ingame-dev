@@ -266,7 +266,7 @@ pub fn get_fighter_common_from_accessor<'a>(
 
 pub fn get_battle_object_from_entry_id(entry_id: u32) -> Option<*mut BattleObject> {
     unsafe {
-        let entry = get_fighter_entry(singletons::FighterManager(), entry_id);
+        let entry = get_fighter_entry(singletons::FighterManager() as _, entry_id);
         if entry.is_null() {
             None
         } else {
@@ -604,7 +604,7 @@ impl FighterInfo {
             FighterManager::set_position_lock(singletons::FighterManager() as _, FighterEntryID(self.entry_id), true);
             PostureModule::set_pos(self.boma as _, self.position.as_ptr() as _);
             
-            MotionModule::change_motion(self.boma as _, smashline::Hash40::new_raw(current_motion), 0.0, 1.0, false, 0.0, false, false);
+            MotionModule::change_motion(self.boma as _, smash::phx::Hash40::new_raw(current_motion), 0.0, 1.0, false, 0.0, false, false);
             MotionModule::set_rate(self.boma as _, current_rate);
             MotionModule::set_frame_sync_anim_cmd(self.boma as _, current_frame, true, false, false);
 
@@ -654,7 +654,7 @@ impl FighterInfo {
             let current_motion = &self.all_motions[self.current_motion_idx as usize];
             let hash = get_hash(current_motion.clone().into_string().unwrap());
             let set_rate = if self.force_overwrite_rate { Some(self.rate) } else { None };
-            MotionModule::change_motion(self.boma as _, smashline::Hash40::new_raw(hash), 0.0, 1.0, false, 0.0, false, false);
+            MotionModule::change_motion(self.boma as _, smash::phx::Hash40::new_raw(hash), 0.0, 1.0, false, 0.0, false, false);
             if let Some(rate) = set_rate {
                 MotionModule::set_rate(self.boma as _, rate);
             }
