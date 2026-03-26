@@ -24,7 +24,7 @@ Install the [host imgui-smash plugin](https://github.com/Coolsonickirby/imgui-sm
 ## Credits
 - [Coolsonickirby](https://github.com/Coolsonickirby) - [imgui-smash](https://github.com/Coolsonickirby/imgui-smash) and this plugin
 - [Raytwo](https://github.com/Raytwo) & [itsmeft24](https://github.com/itsmeft24) - Resource and offsets code used to get the `motion_list.bin` for the motion options
-- [ThatNintendoNerd] - [CameraMeleePhotoController struct](https://github.com/ThatNintendoNerd/camera_free/blob/main/src/app/camera/camera_melee_photo_controller.rs#L9-L76)
+- [ThatNintendoNerd](https://github.com/ThatNintendoNerd) - [CameraMeleePhotoController struct](https://github.com/ThatNintendoNerd/camera_free/blob/main/src/app/camera/camera_melee_photo_controller.rs#L9-L76)
 - [Zarek Syed](https://github.com/zrksyd) - Helped with setting a fighter's animation
 - [PhazoGanon](https://github.com/Armasher5872) - Helped with giving Final Smashe
 - [WuBoy](https://github.com/WuBoyTH) - Helped with moving the characters along the Y-Axis
