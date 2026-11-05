@@ -730,7 +730,7 @@ pub const overwrite_rate_text: &str = "Overwrite Rate\0";
 
 pub fn kind_to_folder_name(kind: i32) -> String {
     unsafe {
-        let offset = offsets::offset_to_addr(0x4f80e20) as *const u64;
+        let offset = offsets::offset_to_addr(0x4f81e20) as *const u64;
         let res = *(offset.add(kind as _));
         skyline::from_c_str(res as _)
     }
@@ -774,7 +774,7 @@ unsafe extern "C" fn draw(){
             
             igCheckbox(locked_cam_text.as_ptr() as _, &mut LOCKED_CAM);
             if igCheckbox(is_paused_text.as_ptr() as _, &mut IS_PAUSED) {
-                *(offsets::offset_to_addr(0x52b82ec) as *mut u8) = if IS_PAUSED { 4 } else { 0 };
+                *(offsets::offset_to_addr(0x52b92ec) as *mut u8) = if IS_PAUSED { 4 } else { 0 };
             }
     
             igCheckbox(invert_mouse_hori_text.as_ptr() as _, &mut INVERT_MOUST_HORI);
@@ -874,7 +874,7 @@ pub unsafe fn update_state(state: &GameState){
     match state {
         GameState::WAITING_FOR_GAME_START => {
             //
-            if *(offsets::offset_to_addr(0x53040f0) as *const u32) == 0x2010000 && is_ready_go(singletons::FighterManager() as _) {
+            if *(offsets::offset_to_addr(0x53050f0) as *const u32) == 0x2010000 && is_ready_go(singletons::FighterManager() as _) {
                 CURRENT_GAME_STATE = GameState::GAME_STARTED;
             }
         },
@@ -1033,7 +1033,7 @@ pub struct CameraMeleePhotoController {
 impl CameraMeleePhotoController {
     pub fn get_instance() -> *mut CameraMeleePhotoController {
         unsafe {
-            let camera = *(crate::offsets::offset_to_addr(0x52b7f00) as *const u64);
+            let camera = *(crate::offsets::offset_to_addr(0x52b8f00) as *const u64);
             let ptr = *((*(camera as *const u64) + 0x10) as *const u64);
             let photo_mode_cam_ptr = *((ptr + 0x60) as *const u64);
             (photo_mode_cam_ptr as *mut CameraMeleePhotoController)
@@ -1118,7 +1118,7 @@ pub fn main() {
             std::thread::sleep(std::time::Duration::from_millis(1000 / 60)); // Poll every frame
             unsafe {
                 if CURRENT_GAME_STATE == GameState::GAME_IN_PROGRESS {
-                    IS_PAUSED = *(offsets::offset_to_addr(0x52b82ec) as *mut u8) == 4;
+                    IS_PAUSED = *(offsets::offset_to_addr(0x52b92ec) as *mut u8) == 4;
                     
                     
                     if is_photo_camera() {
@@ -1127,7 +1127,7 @@ pub fn main() {
                         if keyboard.modifier_pressed(KeyboardModifier::Control) {
                             if !PRESSED_CTRL {
                                 IS_PAUSED = !IS_PAUSED;
-                                *(offsets::offset_to_addr(0x52b82ec) as *mut u8) = if IS_PAUSED { 4 } else { 0 };
+                                *(offsets::offset_to_addr(0x52b92ec) as *mut u8) = if IS_PAUSED { 4 } else { 0 };
                                 PRESSED_CTRL = true;
                             }
                         } else {
