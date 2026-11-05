@@ -267,7 +267,7 @@ dependencies = [
 
 [[package]]
 name = "ingame-dev"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "arcropolis-api",
  "cstring-array",
